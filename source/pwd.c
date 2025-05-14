@@ -2,24 +2,24 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "main.h"  // ±¸Á¶Ã¼, Stack ÇÔ¼ö, DirectoryTree µî ¼±¾ð Æ÷ÇÔ
+#include "main.h"  // êµ¬ì¡°ì²´, Stack í•¨ìˆ˜, DirectoryTree ë“± ì„ ì–¸ í¬í•¨
 
-// ÇöÀç °æ·Î¸¦ Ãâ·Â (·çÆ®ºÎÅÍ ÇöÀç µð·ºÅä¸®±îÁö)
+// í˜„ìž¬ ê²½ë¡œë¥¼ ì¶œë ¥ (ë£¨íŠ¸ë¶€í„° í˜„ìž¬ ë””ë ‰í† ë¦¬ê¹Œì§€)
 int printPath(DirectoryTree* dirTree, Stack* dirStack) {
     DirectoryNode* current = dirTree->current;
 
-    // ½ºÅÃ ºñ¿ì±â
+    // ìŠ¤íƒ ë¹„ìš°ê¸°
     while (!isEmpty(dirStack)) {
         popStack(dirStack);
     }
 
-    // ÇöÀç µð·ºÅä¸®ºÎÅÍ ·çÆ®±îÁö ½ºÅÃ¿¡ push
+    // í˜„ìž¬ ë””ë ‰í† ë¦¬ë¶€í„° ë£¨íŠ¸ê¹Œì§€ ìŠ¤íƒì— push
     while (current != NULL) {
         pushStack(dirStack, current->name);
         current = current->parent;
     }
 
-    // ½ºÅÃÀ» popÇÏ¸é¼­ Á¤¹æÇâÀ¸·Î °æ·Î Ãâ·Â
+    // ìŠ¤íƒì„ popí•˜ë©´ì„œ ì •ë°©í–¥ìœ¼ë¡œ ê²½ë¡œ ì¶œë ¥
     printf("/");
     StackNode* node = dirStack->topNode;
     while (node != NULL) {
@@ -36,9 +36,9 @@ int printPath(DirectoryTree* dirTree, Stack* dirStack) {
     return SUCCESS;
 }
 
-// "pwd" ¸í·É¾î Ã³¸® ÇÔ¼ö
+// pwd ëª…ë ¹ì–´ ì²˜ë¦¬ í•¨ìˆ˜
 int ft_pwd(DirectoryTree* dirTree, Stack* dirStack, char* cmd) {
-    // ¸í·É¾î À¯È¿¼º È®ÀÎ (ÆÄ½ÌµÈ ÈÄ¶ó¸é »ý·« °¡´É)
+    
     if (strcmp(cmd, "pwd") != 0) {
         fprintf(stderr, "Invalid command for pwd: %s\n", cmd);
         return FAIL;
