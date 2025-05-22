@@ -15,6 +15,7 @@
 
 #define MAX_BUFFER 512
 #define MAX_LENGTH 200
+#define LENGTH_SIZE 1000
 #define MAX_DIR 50
 #define MAX_NAME 20
 #define MAX_THREAD 50
@@ -69,6 +70,7 @@ typedef struct userList {
 typedef struct directoryNode {
     char name[MAX_NAME];
     char type;
+    char data[LENGTH_SIZE];
     int SIZE;
     Permission permission;
     ID id;
