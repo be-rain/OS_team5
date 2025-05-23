@@ -8,7 +8,7 @@
 #define OPT_H (1 << 5) // -h: 파일명 출력 안함 (멀티 파일 시 기본 출력됨)
 #define OPT_S (1 << 6) // -s: 에러 메시지 억제
 
-// 대소문자 구분 없이 문자열 검색 (strcasestr 간단 구현)
+// 대소문자 구분 없이 문자열 검색 
 static char *strcasestr_simple(const char *haystack, const char *needle) {
     if (!*needle) return (char *)haystack;
     for (; *haystack; haystack++) {
@@ -75,7 +75,7 @@ int printContent(DirectoryTree *dirtree, char *pattern, char *fileName, unsigned
     return SUCCESS;
 }
 
-// 옵션 문자열 파싱 함수 (지원 옵션만 처리)
+// 옵션 문자열 파싱 함수 
 static unsigned int parse_grep_options(const char *optStr) {
     unsigned int flags = 0;
     for (int i = 1; optStr[i]; i++) {
