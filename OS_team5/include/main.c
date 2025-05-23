@@ -1,6 +1,7 @@
 #include "main.h"
 #define INPUT_SIZE 256
 
+// 전역변수 초기화
 pthread_mutex_t dirTreeMutex = PTHREAD_MUTEX_INITIALIZER;
 time_t ltime = 0;
 struct tm *today = NULL; 
@@ -39,7 +40,7 @@ int main() {
     usrList = loadUserList();
     dStack = initStack();
 
-    printf("Mini Linux Shell 시작합니다. 'exit' 입력 시 종료.\n");
+    printf("운영체제 시작합니다. 'exit' 입력 시 종료.\n");
 
     // 쉘 루프, 명령어 완성 될때마다 추가
     while (1) {

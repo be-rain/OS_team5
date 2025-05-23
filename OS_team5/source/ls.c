@@ -7,22 +7,22 @@
 #define MAX_FILES 1024
 
 // 옵션 플래그 정의
-#define OPT_A  (1 << 0)
-#define OPT_H  (1 << 1)
-#define OPT_L  (1 << 2)
-#define OPT_R  (1 << 3)
-#define OPT_S  (1 << 4)
-#define OPT_T  (1 << 5)
-#define OPT_CAP_A (1 << 6)
-#define OPT_B  (1 << 7)
-#define OPT_I  (1 << 8)
-#define OPT_CAP_I (1 << 9)
-#define OPT_CAP_L (1 << 10)
-#define OPT_M  (1 << 11)
-#define OPT_N  (1 << 12)
-#define OPT_CAP_R (1 << 13)
+#define OPT_A  (1 << 0) // -a
+#define OPT_H  (1 << 1) // -h
+#define OPT_L  (1 << 2) // -l
+#define OPT_R  (1 << 3) // -r
+#define OPT_S  (1 << 4) // -S
+#define OPT_T  (1 << 5) // -t
+#define OPT_CAP_A (1 << 6) // -A
+#define OPT_B  (1 << 7) // -b
+#define OPT_I  (1 << 8) // -i
+#define OPT_CAP_I (1 << 9) // -I
+#define OPT_CAP_L (1 << 10) // -L
+#define OPT_M  (1 << 11) // -m
+#define OPT_N  (1 << 12) // -n
+#define OPT_CAP_R (1 << 13) // -R
 
-// 옵션 파싱 함수
+// 옵션 함수
 static unsigned int parse_ls_options(const char *optStr) {
     unsigned int flags = 0;
     for (int i = 1; optStr[i]; i++) {
@@ -50,7 +50,7 @@ static unsigned int parse_ls_options(const char *optStr) {
     return flags;
 }
 
-// 절대경로 및 상대경로 모두 처리하는 경로 탐색 함수
+// 경로 옵션 함수
 DirectoryNode* findDirectoryByPath(DirectoryTree *dirTree, const char *path) {
     if (path == NULL || strlen(path) == 0) {
         return dirTree->current;
@@ -59,10 +59,10 @@ DirectoryNode* findDirectoryByPath(DirectoryTree *dirTree, const char *path) {
     DirectoryNode *startNode;
 
     if (path[0] == '/') {
-        // 절대경로 시작
+        // 절대경로 
         startNode = dirTree->root;
         path++; // '/' 건너뛰기
-    } else {
+    } else { // 상대경로
         startNode = dirTree->current;
     }
 
@@ -97,7 +97,7 @@ DirectoryNode* findDirectoryByPath(DirectoryTree *dirTree, const char *path) {
     return curr;
 }
 
-// 정렬 비교 함수들
+// 정렬 비교 함수
 static int cmpByName(const void *a, const void *b) {
     DirectoryNode *d1 = *(DirectoryNode **)a;
     DirectoryNode *d2 = *(DirectoryNode **)b;
@@ -162,7 +162,7 @@ static void printLongFormat(DirectoryNode *file, unsigned int flags) {
 
 // 디렉토리 내용 출력 함수, 옵션에 따라 처리, 재귀 지원
 int listDir(DirectoryNode *targetDir, unsigned int flags) {
-    pthread_mutex_lock(&dirTreeMutex); // entry section
+    pthread_mutex_lock(&dirTreeMutex); // 멀티 쓰레드 entry section
 
     if (!targetDir) {
         printf("listDir: target directory is NULL\n");
@@ -236,7 +236,7 @@ int listDir(DirectoryNode *targetDir, unsigned int flags) {
         }
     }
 
-    pthread_mutex_unlock(&dirTreeMutex); // exit section
+    pthread_mutex_unlock(&dirTreeMutex); // 멀티 쓰레드 exit section
     return SUCCESS;
 }
 

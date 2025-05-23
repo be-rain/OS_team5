@@ -7,7 +7,7 @@
  * @param fName   파일 이름/경로
  * @param type    0=쓰기, 1=전체 읽기, 2=줄 번호 출력, 3=빈 줄 건너뛰기
  */
-int concatenate(DirectoryTree* dirTree, char* fName, int type) {
+int concatenate(DirectoryTree* dirTree, char* fName, int type) { // ls 명령어 작동을 위해서 DirectoryNode* dirTree->
     DirectoryNode* saved = dirTree->current;
     DirectoryNode* node = NULL;
     char pathBuf[MAX_DIR];

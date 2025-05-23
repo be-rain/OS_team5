@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <pthread.h>
-#include "main.h"
+#include "../include/main.h"
 
 
 int makeDir(DirectoryTree* dirTree, char* dirName, char type) {
