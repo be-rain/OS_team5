@@ -1,4 +1,4 @@
-#include "../include/main.h"
+#include "main.h"
 #include "cat.h"
 
 /*
@@ -7,7 +7,7 @@
  * @param fName   파일 이름/경로
  * @param type    0=쓰기, 1=전체 읽기, 2=줄 번호 출력, 3=빈 줄 건너뛰기
  */
-int concatenate(DirectoryTree* dirTree, char* fName, int type) { // ls 명령어 작동을 위해서 DirectoryNode* dirTree->current->firstChild 및 nextSibling 연결 필수
+int concatenate(DirectoryTree* dirTree, char* fName, int type) {
     DirectoryNode* saved = dirTree->current;
     DirectoryNode* node = NULL;
     char pathBuf[MAX_DIR];
@@ -39,6 +39,26 @@ int concatenate(DirectoryTree* dirTree, char* fName, int type) { // ls 명령어
                 status = FAIL;
                 goto restore;
             }
+
+            // 도훈님이 추가해달라고 한 코드 
+            {
+                DirectoryNode* newNode = dirExistence(dirTree, fname, 'f');
+                // 부모·자식·형제 포인터 초기화/연결
+                newNode->parent = saved;
+                newNode->firstChild = NULL;
+                newNode->nextSibling = NULL;
+                if (!saved->firstChild) {
+                    saved->firstChild = newNode;
+                }
+                else {
+                    DirectoryNode* sib = saved->firstChild;
+                    while (sib->nextSibling)
+                        sib = sib->nextSibling;
+                    sib->nextSibling = newNode;
+                }
+            }
+            // 
+
             node = dirExistence(dirTree, fname, 'f');
             if (!node) {
                 printf("cat: file '%s' not found after creation\n", fname);
@@ -94,6 +114,7 @@ restore:
     dirTree->current = saved;
     return status;
 }
+
 
 /*
  * ft_cat: 쉘에서 넘어온 커맨드(cmd) 파싱 후 concatenate 호출
