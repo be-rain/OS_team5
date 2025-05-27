@@ -31,7 +31,16 @@
 ### In Ubuntu
 
 <pre>sudo apt install git
-## 현재 제가 private으로 막아서 clone은 안 될 수도 있어요!
 git clone https://github.com/sayyyho/sample-linux
 sudo apt install make
 sudo apt install gcc</pre>
+
+### 로컬에서
+
+<pre>
+git clone https://github.com/Hello-Worldismine/OS_team5.git
+cd OS_team5
+git checkout seho-park
+make
+./TEAM5_LINUX
+</pre>
