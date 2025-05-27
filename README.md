@@ -31,6 +31,6 @@
 ### In Ubuntu
 
 <pre>sudo apt install git
-git clone https://github.com/sayyyho/OS-MiniLinux
+git clone https://github.com/sayyyho/sample-linux
 sudo apt install make
 sudo apt install gcc</pre>
