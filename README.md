@@ -1,4 +1,4 @@
-# Operating-System-MiniLinux
+# Operating-System-TEAM-5
 
 ### build
 
@@ -18,7 +18,7 @@
 
 ### run
 
-<pre>./MINILINUX</pre>
+<pre>./TEAM5_LINUX</pre>
 
 ### How to handling segmentation fault
 
@@ -31,6 +31,7 @@
 ### In Ubuntu
 
 <pre>sudo apt install git
+## 현재 제가 private으로 막아서 clone은 안 될 수도 있어요!
 git clone https://github.com/sayyyho/sample-linux
 sudo apt install make
 sudo apt install gcc</pre>
