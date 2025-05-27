@@ -42,5 +42,6 @@ git clone https://github.com/Hello-Worldismine/OS_team5.git
 cd OS_team5
 git checkout seho-park
 make
+# 에러 뜨면 make clean 후 다시 make
 ./TEAM5_LINUX
 </pre>
