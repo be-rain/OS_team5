@@ -161,7 +161,6 @@ int ft_cat(DirectoryTree *dirTree, char *command) {
             printf("Concatenate FILE(s) to standard output.\n\n");
             printf("With no FILE, or when FILE is -, read standard input.\n\n");
             printf("  -n, --number             number all output lines\n");
-            printf("  -b, --number-nonblank    number nonempty output lines, overrides -n\n");
             printf("      --help     display this help and exit\n");
             return FAIL;
         } else {
