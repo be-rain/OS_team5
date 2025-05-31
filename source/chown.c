@@ -62,7 +62,6 @@ int ft_chown(DirectoryTree* dirTree, char* command) {
             printf("Usage: chown [OPTION]... [OWNER] FILE...\n");
             printf("Change the owner of each FILE to OWNER.\n\n");
             printf("  Options:\n");
-            printf("  -R, --recursive        operate on files and directories recursively\n");
             printf("      --help     display this help and exit\n");
             return FAIL;
         } else {
